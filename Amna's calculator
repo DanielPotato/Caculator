@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# power function
-# gets two numbers and returns the first number power the second number
-
 check_even_odd() {
     if (( answer % 2 == 0 )); then
         echo "The number is even."
@@ -42,7 +39,6 @@ power_of() {
         answer=$((first ** second))
         echo "The answer is $answer"
     else
-        echo "Invalid numbers"
         answer="!"
     fi
 }
