@@ -1,3 +1,148 @@
+#!/bin/bash
+
+#power function
+#gets tow numbers returns first number power second number
+answer=0
+check_even_odd() {
+    if (( $answer % 2 == 0 )); then
+        echo "The number is even."
+    else
+        echo "The number is odd."
+    fi
+}
+
+
+is_div_by_5() {
+	if (( $answer % 5 == 0 )); then
+	echo "The number is divisible by 5."
+	else
+	echo "The number is not divisible by 5."
+	fi
+}
+
+is_prime_number() {
+	if [[ $answer -lt 2 ]]
+	then
+ 		 echo "$answer is not a prime number"
+ 		 return 0
+	else
+ 		 local i=2
+  		while [ $i -lt $answer ] 
+  		do
+    		     if [[ `expr $answer % $i` -eq 0 ]]
+     	    then
+            echo "$answer is not a prime"
+            return 0
+       fi
+  let i=$i+1
+ done
+fi
+echo "$answer is a prime"
+}
+power_of() {
+	
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+        	answer=$(($first ** $second))
+		echo the answer is $answer
+	else 
+		echo "Invalide numbers"
+	fi
+	
+}
+
+divide() {
+	#local answer=0
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+		if [ $second -eq 0 ]; then
+        		echo "Cannot divide by zero."
+    		else
+        		answer=$(bc <<< "scale=2; $first / $second")
+        		echo the answer is $answer
+        	fi
+	else 
+		answer="!"
+	fi
+	
+	
+}
+
+multiply() {
+	
+	#local answer=0
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+        	answer=$(($first * $second))
+        	echo the answer is $answer
+	else 
+		answer="!"
+	fi
+	
+}
+
+add() {
+	
+	#local answer=0
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+        	answer=$(($first + $second))
+        	echo the answer is $answer
+	else 
+		answer="!"
+	fi
+	
+}
+
+modulus() {
+	
+	#local answer=0
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+   		if [ $second -eq 0 ]; then
+        		echo "Cannot divide by zero."
+    		else
+        		answer=$(($first % $second))
+        		echo the answer is $answer
+		fi
+	else 
+		answer="!"
+		
+	fi
+	
+}
+
+subtract() {
+	
+	#local answer=0
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+        	answer=$(($first - $second))
+        	echo the answer is $answer
+	else 
+		answer="!"
+	fi
+	
+}
+
 menu() {
     select menu_answer in Add Subtract Multiply Divide Power_of Modulus Exit
     do
@@ -27,7 +172,15 @@ menu() {
                 echo "Try again. Your input should be one of the available options."
                 ;;
         esac
+        if[$answer -eq "!"]
+        	echo "Invalide numbers"
+       	else
+        	is_div_by_5
+        	is_prime_number
+       		check_even_odd
+	fi
     done
 }
 
+echo "hello are you ready to calculate?"
 menu
