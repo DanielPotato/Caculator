@@ -1,1 +1,33 @@
-we are trying to pull and push
+menu() {
+    select menu_answer in Add Subtract Multiply Divide Power_of Modulus Exit
+    do
+        case $menu_answer in
+            Add)
+                add
+                ;;
+            Subtract)
+                subtract
+                ;;
+            Multiply)
+                multiply
+                ;;
+            Divide)
+                divide
+                ;;
+            Power_of)
+                power_of
+                ;;
+            Modulus)
+                modulus
+                ;;
+            Exit)
+                exit 0
+                ;;
+            *)
+                echo "Try again. Your input should be one of the available options."
+                ;;
+        esac
+    done
+}
+
+menu
