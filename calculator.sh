@@ -1,129 +1,186 @@
 #!/bin/bash
 
-#Made by : David
-#ADD function#-----------------------
-add() {
-    local answer=0
-    read -p "Enter the first number: " first
-    read -p "Enter the second number: " second
+# power function
+# gets two numbers and returns the first number power the second number
 
-    # validation:  ----Inputs are numbers:
-    if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
-        echo "The answer is $((first + second))"
-    else 
-        echo "Invalid numbers"
+check_even_odd() {
+    if (( answer % 2 == 0 )); then
+        echo "The number is even."
+    else
+        echo "The number is odd."
     fi
 }
 
-#MOD function#-----------------------
-modulus() {
-    local answer=0
-    read -p "Enter the first number: " first
-    read -p "Enter the second number: " second
-
-    # validation:  ----Inputs are numbers:
-    if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
-        if [ $second -eq 0 ]; then
-            echo "Cannot divide by zero."
-        else
-            echo "The answer is $((first % second))"
-        fi
-    else 
-        echo "Invalid numbers"
+is_div_by_5() {
+    if (( answer % 5 == 0 )); then
+        echo "The number is divisible by 5."
+    else
+        echo "The number is not divisible by 5."
     fi
 }
 
-# Subtract function
-subtract() {
-    local answer=0
-    read -p "Enter the first number: " first
-    read -p "Enter the second number: " second
-
-    # validation:  ----Inputs are numbers:
-    if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
-        echo "The answer is $((first - second))"
-    else 
-        echo "Invalid numbers"
+is_prime_number() {
+    if (( answer < 2 )); then
+        echo "$answer is not a prime number."
+        return 0
+    else
+        for (( i = 2; i < answer; i++ )); do
+            if (( answer % i == 0 )); then
+                echo "$answer is not a prime number."
+                return 0
+            fi
+        done
     fi
+    echo "$answer is a prime number."
 }
 
-# Multiply function
-multiply() {
-    local answer=0
-    read -p "Enter the first number: " first
-    read -p "Enter the second number: " second
-
-    # validation:  ----Inputs are numbers:
-    if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
-        echo "The answer is $((first * second))"
-    else 
-        echo "Invalid numbers"
-    fi
-}
-
-# Power_of function
 power_of() {
-    local answer=0
-    read -p "Enter the base number: " base
-    read -p "Enter the exponent: " exponent
+    read -p "Enter base number: " first
+    read -p "Enter exponent: " second
 
-    # validation:  ----Inputs are numbers:
-    if [[ $base =~ ^-?[0-9]+(\.[0-9]+)?$ && $exponent =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
-        echo "The answer is $((base ** exponent))"
-    else 
+    if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
+        answer=$((first ** second))
+        echo "The answer is $answer"
+    else
         echo "Invalid numbers"
+        answer="!"
     fi
 }
 
-# Divide function
 divide() {
-    local answer=0
-    read -p "Enter the numerator: " numerator
-    read -p "Enter the denominator: " denominator
 
-    # validation:  ----Inputs are numbers:
-    if [[ $numerator =~ ^-?[0-9]+(\.[0-9]+)?$ && $denominator =~ ^-?[0-9]+(\.[0-9]+)?$ ]]; then
-        if [ $denominator -eq 0 ]; then
-            echo "Cannot divide by zero."
-        else
-            echo "The answer is $(bc <<< \"scale=2; $numerator / $denominator\")"
-        fi
-    else 
-        echo "Invalid numbers"
-    fi
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+		if [ $second -eq 0 ]; then
+        		echo "Cannot divide by zero."
+    		else
+        		answer=$(bc <<< "scale=2; $first / $second")
+        		echo the answer is $answer
+        	fi
+	else 
+		answer="!"
+	fi
+	
+	
 }
 
-# Menu function
+multiply() {
+	
+
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+        	answer=$(($first * $second))
+        	echo the answer is $answer
+	else 
+		answer="!"
+	fi
+	
+}
+
+add() {
+	
+
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+        	answer=$(($first + $second))
+        	echo the answer is $answer
+	else 
+		answer="!"
+	fi
+	
+}
+
+modulus() {
+	
+
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+   		if [ $second -eq 0 ]; then
+        		echo "Cannot divide by zero."
+    		else
+        		answer=$(($first % $second))
+        		echo the answer is $answer
+		fi
+	else 
+		answer="!"
+		
+	fi
+	
+}
+
+subtract() {
+	
+
+	read -p "enter first number: " first
+	read -p "enter second number: " second
+	# validation:  ----Inputs are numbers:
+	if [[ $first =~ ^-?[0-9]+(\.[0-9]+)?$ && $second =~ ^-?[0-9]+(\.[0-9]+)?$ ]]
+   	then
+        	answer=$(($first - $second))
+        	echo the answer is $answer
+	else 
+		answer="!"
+	fi
+	
+}
+
 menu() {
-    select menu_answer in Add Subtract Multiply Divide Power_of Modulus Exit
-    do
+   PS3="Select an operation: "
+    options=("Add" "Subtract" "Multiply" "Divide" "Power_of" "Modulus" "Exit")
+
+    select menu_answer in "${options[@]}"; do
         case $menu_answer in
-            Add)
+            "Add")
                 add
                 ;;
-            Subtract)
+            "Subtract")
                 subtract
                 ;;
-            Multiply)
+            "Multiply")
                 multiply
                 ;;
-            Divide)
+            "Divide")
                 divide
                 ;;
-            Power_of)
+            "Power_of")
                 power_of
                 ;;
-            Modulus)
+            "Modulus")
                 modulus
                 ;;
-            Exit)
+            "Exit")
+                echo "Goodbye!"
                 exit 0
                 ;;
             *)
-                echo "Try again. Your input should be one of the available options."
+                echo "Invalid choice. Please select a valid option."
                 ;;
         esac
+
+        if [ "$answer" != "!" ]; then
+                    answer=$(printf "%.0f" "$answer")
+                    is_div_by_5
+                    is_prime_number
+                    check_even_odd
+                else
+                    echo "Invalid numbers"
+                fi
+        break  # Exit the inner select loop to display the menu again
     done
 }
 
+while true; do
 menu
+done
