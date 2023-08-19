@@ -1,5 +1,5 @@
-while true; do
-    PS3="Select an operation: "
+menu() {
+   PS3="Select an operation: "
     options=("Add" "Subtract" "Multiply" "Divide" "Power_of" "Modulus" "Exit")
 
     select menu_answer in "${options[@]}"; do
@@ -40,5 +40,8 @@ while true; do
         fi
         break  # Exit the inner select loop to display the menu again
     done
-done
+}
 
+while true; do
+menu
+done
