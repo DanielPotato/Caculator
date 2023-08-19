@@ -1,38 +1,44 @@
-#!/bin/bash
-check_even_odd() {
-    if (( $1 % 2 == 0 )); then
-        echo "The number is even."
-    else
-        echo "The number is odd."
-    fi
-}
+while true; do
+    PS3="Select an operation: "
+    options=("Add" "Subtract" "Multiply" "Divide" "Power_of" "Modulus" "Exit")
 
+    select menu_answer in "${options[@]}"; do
+        case $menu_answer in
+            "Add")
+                add
+                ;;
+            "Subtract")
+                subtract
+                ;;
+            "Multiply")
+                multiply
+                ;;
+            "Divide")
+                divide
+                ;;
+            "Power_of")
+                power_of
+                ;;
+            "Modulus")
+                modulus
+                ;;
+            "Exit")
+                echo "Goodbye!"
+                exit 0
+                ;;
+            *)
+                echo "Invalid choice. Please select a valid option."
+                ;;
+        esac
 
-is_div_by_5() {
-if (( $1 % 5 == 0 )); then
-echo "The number is divisible by 5."
-else
-echo "The number is not divisible by 5."
-fi
-}
-
-is_prime_number() {
-if [[ $1 -lt 2 ]]
-then
-  echo "$number is not a prime number"
-  return 0
-else
-  local i=2
-  while [ $i -lt $number ] 
-  do
-         if [[ `expr $number % $i` -eq 0 ]]
-         then
-            echo "$number is not a prime"
-            return 0
-       fi
-  let i=$i+1
- done
-fi
-echo "$number is a prime"
-}
+        if [[ "$answer" == "!" ]]; then
+            echo "Invalid numbers."
+        else
+            is_div_by_5
+            is_prime_number
+            check_even_odd
+        fi
+        break  # Exit the inner select loop to display the menu again
+    done
+done
 
