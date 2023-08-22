@@ -57,7 +57,7 @@ divide() {
 		if [ $second -eq 0 ]; then
         		echo "Cannot divide by zero."
     		else
-        		answer=$(bc <<< "scale=2; $first / $second")
+        		answer=$(($first / $second))
         		echo the answer is $answer
         	fi
 	else 
@@ -170,7 +170,6 @@ menu() {
         esac
 
         if [ "$answer" != "!" ]; then
-                    answer=$(printf "%.0f" "$answer")
                     is_div_by_5
                     is_prime_number
                     check_even_odd
@@ -181,6 +180,4 @@ menu() {
     done
 }
 
-while true; do
 menu
-done
